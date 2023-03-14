@@ -1,0 +1,14 @@
+LICENSE
+README.md
+pyproject.toml
+autotranscribe/__init__.py
+autotranscribe/advanced.py
+autotranscribe/setup.py
+autotranscribe/splitter.py
+autotranscribe/transcribe.py
+autotranscribe/transcribe_cli.py
+autotranscribe/videoproc.py
+autotranscribe.egg-info/PKG-INFO
+autotranscribe.egg-info/SOURCES.txt
+autotranscribe.egg-info/dependency_links.txt
+autotranscribe.egg-info/top_level.txt
