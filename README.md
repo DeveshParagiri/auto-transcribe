@@ -1,6 +1,6 @@
 # Autotranscribe
 
-autotranscribe is a simple library to convert video/audio to text. The library currently supports transcription of youtube files as well as implementing multiprocessing for faster transcription. It is built around the OpenAI whisper model.
+Autotranscribe is a simple library to convert video/audio to text. The library currently supports transcription of youtube files as well as implementing multiprocessing for faster transcription. It is built around the OpenAI whisper model.
 
 ## Installation
 
@@ -15,7 +15,7 @@ pip install autotranscribe
 ```python
 import autotranscribe
 
-# Transcribe a youtube file with basic functionality. Utilise multiprocessing for faster results.
+# Transcribe a youtube file with basic functionality.
 autotranscribe.transcribe_from_youtube(url,'transcripts/transcript.txt', multiproc = True)
 ```
 
