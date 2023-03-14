@@ -1,29 +1,28 @@
-[build-system]
-build-backend = "setuptools.build_meta"
-requires = ["setuptools", 
-    "wheel", 
-    "pydub >= 0.25.1",
-    "pytube >= 12.1.2",
-    "moviepy >= 1.0.3",
-    "psutil >= 5.9.4",
-    "openai-whisper >= 20230308"
-]
-
-[project]
+[tool.poetry]
 name = "autotranscribe"
-version = "0.0.3"
-authors = [
-  { name="Devesh Paragiri", email="devesh.paragiri@gmail.com" },
-]
-description = "A transcriber"
+version = "0.1.2"
+description = "An auto transcription service for youtube and normal videos."
+authors = ["Devesh Paragiri <devesh.paragiri@gmail.com>"]
+license = "MIT"
 readme = "README.md"
-requires-python = ">=3.7"
+repository = "https://github.com/DeveshParagiri/auto-transcribe"
+keywords = ["transcription", "text", "speech to text"]
 classifiers = [
-    "Programming Language :: Python :: 3",
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Education",
     "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent",
+    "Programming Language :: Python"
 ]
 
-[project.urls]
-"Homepage" = "https://github.com/DeveshParagiri/auto-transcribe"
+[tool.poetry.dependencies]
+python = "^3.8"
+pydub = "0.25.1"
+pytube = "12.1.2"
+moviepy = "1.0.3"
+psutil = "5.9.4"
+openai-whisper = "20230308"
 
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

@@ -1,1 +1,1 @@
-from transcribe import transcribe_from_youtube, transcribe_from_video
+from autotranscribe.transcriber import transcribe_from_youtube, transcribe_from_video

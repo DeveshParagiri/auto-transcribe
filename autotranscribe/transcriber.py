@@ -1,8 +1,8 @@
 import whisper
 import time
 from datetime import timedelta
-from videoproc import youtube_preprocess
-from advanced import result_multi
+from autotranscribe.videoproc import youtube_preprocess
+from autotranscribe.advanced import result_multi
 
 def transcribe_from_youtube(url, file_out, start=None, end=None, multiproc=False, extensive=False):
     '''
@@ -28,8 +28,9 @@ def transcribe_from_youtube(url, file_out, start=None, end=None, multiproc=False
         result_multi(file_in, file_out)
     else:
         result = model.transcribe(file_in, fp16 = False)
+
         with open(file_out,'w') as f:
-            f.write(result)
+            f.write(result["text"])
         
     end_time = time.time()
 
@@ -64,7 +65,7 @@ def transcribe_from_video(file_in, file_out, multiproc=False, extensive=False):
     else:
         result = model.transcribe(file_in, fp16 = False)
         with open(file_out,'w') as f:
-            f.write(result)
+            f.write(result["text"])
         
     end_time = time.time()
 
@@ -76,6 +77,3 @@ def transcribe_from_video(file_in, file_out, multiproc=False, extensive=False):
             'multiprocessing': multiproc,
             'model_large': extensive}
     return info
-
-
-print(transcribe_from_youtube('https://www.youtube.com/watch?v=CWeWxl7ruGE', 'testfile.txt',multiproc=True))

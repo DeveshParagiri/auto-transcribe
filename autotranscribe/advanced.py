@@ -1,5 +1,5 @@
 import whisper
-from splitter import split
+from autotranscribe.splitter import split
 from datetime import timedelta
 import multiprocessing
 import psutil
