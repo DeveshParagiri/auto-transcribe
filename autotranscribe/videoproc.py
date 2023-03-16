@@ -1,7 +1,7 @@
 from moviepy.editor import *
 import pytube 
 import os
-
+from pytube.cli import on_progress
 
 def get_sec(time_str):
     """Get seconds from time.
@@ -12,9 +12,8 @@ def get_sec(time_str):
 
 
 def youtube_preprocess(link, start = None, end = None):
-    yt = pytube.YouTube(link)
+    yt = pytube.YouTube(link, on_complete_callback=on_progress)
     destination = '.'
-
     video = yt.streams.filter(only_audio = True).first()
 
     out_file = video.download(output_path=destination)
