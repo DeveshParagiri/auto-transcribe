@@ -1,7 +1,6 @@
 from moviepy.editor import *
 import pytube 
 import os
-from pytube.cli import on_progress
 
 def get_sec(time_str):
     """Get seconds from time.
@@ -12,7 +11,10 @@ def get_sec(time_str):
 
 
 def youtube_preprocess(link, start = None, end = None):
-    yt = pytube.YouTube(link, on_complete_callback=on_progress)
+
+    print(start, end)
+    yt = pytube.YouTube(link)
+    yt.register_on_progress_callback(show_progress_bar)
     destination = '.'
     video = yt.streams.filter(only_audio = True).first()
 
@@ -24,7 +26,16 @@ def youtube_preprocess(link, start = None, end = None):
     os.rename(out_file, new_file)
 
     if start and end:
+        print(start,end)
         myclip = AudioFileClip(new_file).subclip(get_sec(start),get_sec(end))
-        
-        
+        myclip.write_audiofile(new_file)
     return new_file
+
+# Display a download progress bar
+def show_progress_bar(stream, _chunk, bytes_remaining):
+  current = ((stream.filesize - bytes_remaining)/stream.filesize)
+  percent = ('{0:.1f}').format(current*100)
+  progress = int(50*current)
+  status = '█' * progress + '-' * (50 - progress)
+  sys.stdout.write(' ↳ |{bar}| {percent}%\r'.format(bar=status, percent=percent))
+  sys.stdout.flush()

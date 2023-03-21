@@ -1,5 +1,4 @@
 /env
 /autotranscribe/__pycache__
-/autotranscribe/transcribe_cli.py
 /dist
 .DS_Store

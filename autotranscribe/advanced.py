@@ -4,8 +4,10 @@ from datetime import timedelta
 import multiprocessing
 import psutil
 import shutil
+import sys
+import os
 
-model = whisper.load_model("base")
+model = whisper.load_model("large")
 
 
 def subproc(path):
@@ -20,14 +22,15 @@ def result_multi(file_in, file_out):
     process = cpus - 2
     if files < process:
         process = files
-    
+        
     pool = multiprocessing.Pool(process)
     processes = [pool.apply_async(subproc, args=("process_chunks/chunk{0}.wav".format(x),)) for x in range(files)]
 
     with open(file_out, "w") as f:
         for p in processes:
             f.write(p.get())
-    
+
+    sys.stdout.write(' ↳ Transription complete.')
     pool.close()
     pool.join()
     shutil.rmtree("process_chunks")
