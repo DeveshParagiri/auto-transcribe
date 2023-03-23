@@ -1,6 +1,6 @@
 # Autotranscribe
 
-Autotranscribe is a simple library to convert video/audio to text. The library currently supports transcription of youtube files as well as implementing multiprocessing for faster transcription. It is built around the OpenAI whisper model.
+Autotranscribe is a library to convert video/audio to text. The library currently supports transcription of youtube files as well as implementing multiprocessing for faster transcription. It is built around the OpenAI whisper model.
 
 ## Installation
 
