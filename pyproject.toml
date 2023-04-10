@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "autotranscribe"
-version = "0.1.4"
+version = "0.1.5"
 description = "An auto transcription service for youtube and normal videos."
 authors = ["Devesh Paragiri <devesh.paragiri@gmail.com>"]
 license = "MIT"

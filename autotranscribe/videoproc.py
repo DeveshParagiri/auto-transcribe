@@ -12,7 +12,6 @@ def get_sec(time_str):
 
 def youtube_preprocess(link, start = None, end = None):
 
-    print(start, end)
     yt = pytube.YouTube(link)
     yt.register_on_progress_callback(show_progress_bar)
     destination = '.'
