@@ -1,5 +1,5 @@
 pydub==0.25.1
-pytube==12.1.2
+pytube==15.0.0
 moviepy==1.0.3
 psutil==5.9.4
 openai-whisper==20230308

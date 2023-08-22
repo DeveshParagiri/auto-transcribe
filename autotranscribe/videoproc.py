@@ -1,6 +1,7 @@
 from moviepy.editor import *
 import pytube 
 import os
+from pydub import AudioSegment
 
 def get_sec(time_str):
     """Get seconds from time.
@@ -10,6 +11,13 @@ def get_sec(time_str):
     return int(h) * 3600 + int(m) * 60 + int(s)
 
 
+def get_millisec(time_str):
+    """Get seconds from time.
+    """
+
+    h, m, s = time_str.split(':')
+    return (int(h) * 3600 + int(m) * 60 + int(s))*1000
+
 def youtube_preprocess(link, start = None, end = None):
 
     yt = pytube.YouTube(link)
@@ -18,16 +26,18 @@ def youtube_preprocess(link, start = None, end = None):
     video = yt.streams.filter(only_audio = True).first()
 
     out_file = video.download(output_path=destination)
-
     base, ext = os.path.splitext(out_file)
+    new_file = f'{base}.wav'
 
-    new_file = base + '.wav'
-    os.rename(out_file, new_file)
+    originalaudio = AudioSegment.from_file(out_file,format="mp4")
+
 
     if start and end:
-        print(start,end)
-        myclip = AudioFileClip(new_file).subclip(get_sec(start),get_sec(end))
-        myclip.write_audiofile(new_file)
+        extract = originalaudio[get_millisec(start):get_millisec(end)]
+        extract.export(new_file, format="wav")
+    else:
+        originalaudio.export(new_file, format="wav")
+
     return new_file
 
 # Display a download progress bar
